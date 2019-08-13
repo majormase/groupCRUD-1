@@ -4,13 +4,15 @@ app.controller('MyController', ['$http', function($http){
     const controller = this;
     this.indexOfEditFormToShow = null;
 
-    this.editEvent = function(event){
+    this.editVenue = function(venue){
         $http({
             method: "PUT",
             url: '/venues/' + venue._id,
             data: {
-                title: this.updatedTitle,
-                url: this.updatedUrl
+                name: this.updatedName,
+                date: this.updatedDate,
+                url: this.UpdatedUrl,
+                image: this.updatedImage
             }
         }).then(function(){
             controller.getVenues();
@@ -18,7 +20,7 @@ app.controller('MyController', ['$http', function($http){
         });
     };
 
-    this.deleteBookmark = function(bookmark){
+    this.deleteVenue = function(venue){
         $http({
             method: "DELETE",
             url: '/venues/' + venue._id
@@ -43,8 +45,10 @@ app.controller('MyController', ['$http', function($http){
             method:"POST",
             url:'/venues',
             data: {
-                title: this.title,
-                url: this.url
+                name: this.name,
+                date: this.date,
+                url: this.url,
+                image: this.image
             }
         }).then(function(){
             controller.getVenues();

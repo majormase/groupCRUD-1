@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="en" dir="ltr" ng-app="MyApp">
     <head>
         <meta charset="utf-8">
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.8/angular.min.js" charset="utf-8"></script>
@@ -12,28 +12,33 @@
             </div>
             <div class="container">
                 <h3>add a new event</h3>
-                <form ng-submit="ctrl.createBookmark()">
-                    <input type="text" name="title" placeholder="website" ng-model="ctrl.title">
+                <form ng-submit="ctrl.createVenue()">
+                    <input type="text" name="name" placeholder="event name" ng-model="ctrl.name">
+                    <input type="text" name="date" placeholder="Month Day, Year" ng-model="ctrl.date">
                     <input type="text" name="url" placeholder="http://" ng-model="ctrl.url">
+                    <input type="text" name="image" placeholder="image link" ng-model="ctrl.image">
                     <input type="submit" value="Add">
                 </form>
-                    <div ng-repeat="bookmark in ctrl.bookmarks">
-                        <a href="{{bookmark.url}}">
-                            {{bookmark.title}}
+                    <div ng-repeat="venue in ctrl.venues">
+                        <a href="{{venue.url}}">
+                            {{venue.name}}
                         </a>
+                            {{venue.date}}
                         <button
                             ng-if="$index !== ctrl.indexOfEditFormToShow"
                             ng-click="ctrl.indexOfEditFormToShow = $index">
                             edit
                         </button>
-                        <button ng-click="ctrl.deleteBookmark(bookmark)">
+                        <button ng-click="ctrl.deleteVenue(venue)">
                             delete
                         </button>
                         <form
                             ng-if="$index == ctrl.indexOfEditFormToShow"
-                            ng-submit="ctrl.editBookmark(bookmark)" >
-                                <input type="text" ng-model="ctrl.updatedTitle" placeholder="website">
-                                <input type="text" ng-model="ctrl.updatedUrl" placeholder="http://">
+                            ng-submit="ctrl.editVenue(venue)" >
+                                <input type="text" name="name" placeholder="event name" ng-model="ctrl.updatedName">
+                                <input type="text" name="date" placeholder="Month Day, Year" ng-model="ctrl.updatedDate">
+                                <input type="text" name="url" placeholder="http://" ng-model="ctrl.UpdatedUrl">
+                                <input type="text" name="image" placeholder="image link" ng-model="ctrl.updatedImage">
                                 <input type="submit" value="Done">
                         </form>
                     </div>
