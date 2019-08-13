@@ -6,6 +6,8 @@
         <script src="app.js" charset="utf-8"></script>
         <title>Parks And Rec Events</title>
     </head>
+    <header>
+    </header>
     <body ng-controller="MyController as ctrl">
             <div class="header">
                 <h1>Parks and Rec Events</h1>
@@ -20,10 +22,13 @@
                     <input type="submit" value="Add">
                 </form>
                     <div ng-repeat="venue in ctrl.venues">
-                        <a href="{{venue.url}}">
-                            {{venue.name}}
-                        </a>
-                            {{venue.date}}
+                        <h1>Events</h1>
+                        <div class="event">
+                        <h3>{{venue.name}}</h3>
+                        <img src="{{venue.image}}" alt="">
+                        <h5>{{venue.date}}</h5>
+                        <a href="{{venue.url}}">more info</a>
+                        </div>
                         <button
                             ng-if="$index !== ctrl.indexOfEditFormToShow"
                             ng-click="ctrl.indexOfEditFormToShow = $index">
