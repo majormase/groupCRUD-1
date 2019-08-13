@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <title>Parks And Rec Events</title>
+    </head>
+    <body ng-controller="MyController as ctrl">
+            <div class="header">
+                <h1>Parks and Rec Events</h1>
+            </div>
+            <div class="container">
+                <h3>add a new event</h3>
+                <form ng-submit="ctrl.createBookmark()">
+                    <input type="text" name="title" placeholder="website" ng-model="ctrl.title">
+                    <input type="text" name="url" placeholder="http://" ng-model="ctrl.url">
+                    <input type="submit" value="Add">
+                </form>
+                    <div ng-repeat="bookmark in ctrl.bookmarks">
+                        <a href="{{bookmark.url}}">
+                            {{bookmark.title}}
+                        </a>
+                        <button
+                            ng-if="$index !== ctrl.indexOfEditFormToShow"
+                            ng-click="ctrl.indexOfEditFormToShow = $index">
+                            edit
+                        </button>
+                        <button ng-click="ctrl.deleteBookmark(bookmark)">
+                            delete
+                        </button>
+                        <form
+                            ng-if="$index == ctrl.indexOfEditFormToShow"
+                            ng-submit="ctrl.editBookmark(bookmark)" >
+                                <input type="text" ng-model="ctrl.updatedTitle" placeholder="website">
+                                <input type="text" ng-model="ctrl.updatedUrl" placeholder="http://">
+                                <input type="submit" value="Done">
+                        </form>
+                    </div>
+            </div>
+        </body>
+</html>
