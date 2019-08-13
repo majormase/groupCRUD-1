@@ -4,6 +4,7 @@
         <meta charset="utf-8">
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.8/angular.min.js" charset="utf-8"></script>
         <script src="app.js" charset="utf-8"></script>
+        <link rel="stylesheet" href="main.css">
         <title>Parks And Rec Events</title>
     </head>
     <header>
@@ -21,22 +22,27 @@
                     <input type="text" name="image" placeholder="image link" ng-model="ctrl.image">
                     <input type="submit" value="Add">
                 </form>
+                <h1>Events</h1>
+                <div class="large-container">
                     <div ng-repeat="venue in ctrl.venues">
-                        <h1>Events</h1>
+
                         <div class="event">
-                        <h3>{{venue.name}}</h3>
-                        <img src="{{venue.image}}" alt="">
-                        <h5>{{venue.date}}</h5>
-                        <a href="{{venue.url}}">more info</a>
+                            <h3>{{venue.name}}</h3>
+                            <img src="{{venue.image}}" alt="">
+                            <h5>{{venue.date}}</h5>
+                            <a href="{{venue.url}}">more info</a>
+                        <div class="editDeleteBtns">
+                            <button
+                                ng-if="$index !== ctrl.indexOfEditFormToShow"
+                                ng-click="ctrl.indexOfEditFormToShow = $index">
+                                edit
+                            </button>
+                            <button ng-click="ctrl.deleteVenue(venue)">
+                                delete
+                            </button>
                         </div>
-                        <button
-                            ng-if="$index !== ctrl.indexOfEditFormToShow"
-                            ng-click="ctrl.indexOfEditFormToShow = $index">
-                            edit
-                        </button>
-                        <button ng-click="ctrl.deleteVenue(venue)">
-                            delete
-                        </button>
+                        </div>
+
                         <form
                             ng-if="$index == ctrl.indexOfEditFormToShow"
                             ng-submit="ctrl.editVenue(venue)" >
@@ -47,6 +53,7 @@
                                 <input type="submit" value="Done">
                         </form>
                     </div>
+                </div>
             </div>
         </body>
 </html>
