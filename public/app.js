@@ -7,13 +7,13 @@ app.controller('MyController', ['$http', function($http){
     this.editEvent = function(event){
         $http({
             method: "PUT",
-            url: '/events/' + event._id,
+            url: '/venues/' + venue._id,
             data: {
                 title: this.updatedTitle,
                 url: this.updatedUrl
             }
         }).then(function(){
-            controller.getEvents();
+            controller.getVenues();
             controller.indexOfEditFormToShow = null;
         });
     };
@@ -21,35 +21,35 @@ app.controller('MyController', ['$http', function($http){
     this.deleteBookmark = function(bookmark){
         $http({
             method: "DELETE",
-            url: '/events/' + event._id
+            url: '/venues/' + venue._id
         }).then(function(){
-            controller.getEvents();
+            controller.getVenues();
         });
     };
 
-    this.getEvents = function(){
+    this.getVenues = function(){
         $http({
             method:"GET",
-            url: '/events'
+            url: '/venues'
         }).then(function(response){
-            controller.events = response.data;
+            controller.venues = response.data;
         }, function (error){
             console.log(error);
         });
     };
 
-    this.createBookmark = function(){
+    this.createVenue = function(){
         $http({
             method:"POST",
-            url:'/events',
+            url:'/venues',
             data: {
                 title: this.title,
                 url: this.url
             }
         }).then(function(){
-            controller.getEvents();
+            controller.getVenues();
         });
     };
 
-    this.getEvents();
+    this.getVenues();
 }]);
