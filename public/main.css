@@ -1,0 +1,41 @@
+/* * {
+    border: red solid 1px;
+} */
+
+.large-container {
+    display: flex;
+    flex-direction: row;
+}
+
+.event {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: grey;
+    height: 400px;
+    width: 275px;
+    margin: 10px;
+}
+
+.event > h3 {
+    color: white;
+}
+
+.event > h5 {
+    margin: 0px;
+    color: white;
+    margin-top: 5px;
+}
+
+.event > a {
+    color: black;
+    text-decoration: none;
+    background-color: white;
+    padding: 3px;
+    margin: 5px;
+}
+
+.event > img {
+    height: auto;
+    width: 215px;
+}

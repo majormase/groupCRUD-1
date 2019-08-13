@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const Venues = require('../models/venues.js')
+const Venues = require('../models/venues.js');
 
 router.get('/', (req, res)=>{
     Venues.find({}, (err, foundVenues)=>{
